@@ -1,0 +1,34 @@
+<!doctype html>
+    <html>
+        <head>
+            <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        </head>
+        <body>
+            <h1><a href="/">회원정보</a></h1>
+
+            {%if show_list is not defined or show_list%}
+                <ol>
+                    {%for list in lists%}
+                    <li><a href="{{url_for('member', id=list.id)}}">{{list.name}}</a></li>
+                    {% endfor %}
+                </ol>
+            {%endif%}
+            <div>
+                {%block content%}{%endblock%}
+            </div>
+            <ul>
+                {%if hide_create is not defined or not hide_create%}
+                <p><a href="{{url_for('create')}}">Create</a></p>
+                {%endif%}
+                {%if id is not none and (hide_create is not defined or not hide_create)%}
+                <p><a href="{{url_for('update', id=list.id)}}">Update</a></p>
+                <form action="{{url_for('delete', id=list.id)}}" method="POST" onsubmit="return confirmDelete()"><input type="submit" value="Delete"></form>
+                {%endif%}
+            </ul>
+            <script>
+                function confirmDelete(){
+                    return confirm("정말로 삭제하시겠습니까?");
+                }
+            </script>
+        </body>
+    </html>

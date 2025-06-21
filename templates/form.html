@@ -1,0 +1,11 @@
+{%extends "main.html"%}
+{%block content%}
+    <div class="form_container">
+        <form action="{{action}}" method="POST">
+            <p><input type="text" name="name" placeholder="성명"></p>
+            <p><input type="text" name="contact" placeholder="연락처"></p>
+            <p><textarea name="info" placeholder="자기소개"></textarea></p>
+            <p><input type="submit" value="{{button}}"></p>
+        </form>
+    </div>
+{%endblock%}
